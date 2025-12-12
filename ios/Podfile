@@ -19,6 +19,10 @@ target 'productList' do
 
   use_react_native!(
     :path => config[:reactNativePath],
+    # Disable the New Architecture/Fabric to avoid missing RNSScreen* symbols
+    # during linking (RCTThirdPartyFabricComponentsProvider).
+    :new_arch_enabled => false,
+    :fabric_enabled => false,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
