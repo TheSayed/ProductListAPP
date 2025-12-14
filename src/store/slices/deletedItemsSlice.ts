@@ -26,6 +26,3 @@ const deletedItemsSlice = createSlice({
 
 export const {addDeletedItems, clearDeletedItems} = deletedItemsSlice.actions;
 export default deletedItemsSlice.reducer;
-
-
-

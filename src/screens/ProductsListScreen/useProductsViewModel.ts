@@ -6,8 +6,15 @@ import {
   resetProducts,
   Product,
 } from '../../store/slices/productsSlice';
-import {addToCart, removeFromCart, removeManyFromCart} from '../../store/slices/cartSlice';
-import {addDeletedItems, clearDeletedItems} from '../../store/slices/deletedItemsSlice';
+import {
+  addToCart,
+  removeFromCart,
+  removeManyFromCart,
+} from '../../store/slices/cartSlice';
+import {
+  addDeletedItems,
+  clearDeletedItems,
+} from '../../store/slices/deletedItemsSlice';
 import MOCK_DATA from '../../data/MOCK_DATA.json';
 import {SortOrder} from '../../components/SortButton/SortButton';
 
