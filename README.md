@@ -3,56 +3,66 @@
 React Native demo that lists products with search, sort, selection, delete, and cart/collection flows. Built with React Navigation, Redux Toolkit, FastImage, and vector icons.
 
 ### Features
+
 - Browse mock products with images, price, and tags.
 - Search bar and sort toggle (asc/desc/none).
 - Select items, delete, and mark as collected (heart).
 - Cart screen and deleted items screen for simple state management.
 
 ### Prerequisites
-- Node 18+ and npm (or Yarn).  
-- Watchman (macOS) recommended.  
-- Xcode with CocoaPods for iOS.  
-- Android Studio + SDK/NDK for Android.  
+
+- Node 18+ and npm (or Yarn).
+- Watchman (macOS) recommended.
+- Xcode with CocoaPods for iOS.
+- Android Studio + SDK/NDK for Android.
 - Ruby + CocoaPods (`gem install cocoapods`) if not already available.
 
 ### Install dependencies
+
 ```bash
 cd /Users/ahmedkotp/Desktop/productList
 npm install
 ```
 
 ### iOS setup & run
+
 ```bash
 cd ios
 LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 pod install
 cd ..
 npx react-native run-ios
 ```
+
 - If using Xcode: open `ios/productList.xcworkspace`, then Product > Clean Build Folder, Build & Run.
 - If you previously installed the app on the simulator/device, uninstall before rerunning to avoid cached assets.
 
 ### Android setup & run
+
 ```bash
 cd /Users/ahmedkotp/Desktop/productList
 npx react-native run-android
 ```
+
 - Ensure an emulator or device is running and has developer mode enabled.
 - If build cache issues appear, run `cd android && ./gradlew clean`, then rerun the command above.
 
 ### Metro
+
 If you hit resolution or caching issues:
+
 ```bash
 npx react-native start --reset-cache
 ```
 
 ### Notes
+
 - Vector icons (Ionicons) are linked via `react-native-asset`; font lives in `android/app/src/main/assets/fonts` and iOS Resources.
 - Uses Hermes (default in RN 0.76). Keep Node 18+ as declared in `package.json`.
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+  This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
 ## Step 1: Start the Metro Server
 

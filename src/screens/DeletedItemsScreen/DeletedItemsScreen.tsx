@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import ProductCard from '../../components/ProductCard/ProductCard';
-import {MainStackParamList} from '../../navigation/types';
 import {styles as listStyles} from '../ProductsListScreen/ProductsListScreen.styles';
 import {useDeletedItemsScreen} from './useDeletedItemsScreen';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {MainStackParamList} from '../../navigation/types';
 
 type DeletedItemsScreenProps = NativeStackScreenProps<
   MainStackParamList,
@@ -19,13 +19,8 @@ type DeletedItemsScreenProps = NativeStackScreenProps<
 
 const noop = () => {};
 
-const DeletedItemsScreen: React.FC<DeletedItemsScreenProps> = ({
-  route,
-  navigation,
-}) => {
-  const hookItems = route.params?.items || [];
-  const {isPortrait, numColumns, listKey, items} =
-    useDeletedItemsScreen(hookItems);
+const DeletedItemsScreen: React.FC<DeletedItemsScreenProps> = ({navigation}) => {
+  const {isPortrait, numColumns, listKey, items} = useDeletedItemsScreen();
   const columnWrapperStyle = !isPortrait ? listStyles.columnWrapper : undefined;
 
   return (

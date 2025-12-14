@@ -22,13 +22,16 @@ export const portraitStyles = StyleSheet.create({
   imageContainer: {
     // Slightly shallower image to fit more cards on screen
     aspectRatio: 1.2,
-    position: 'relative',
     width: '100%',
-    backgroundColor: COLORS.lightGrayTag,
+    overflow: 'hidden',
+    position: 'relative',
   },
   image: {
-    width: '100%',
-    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   detailsContainer: {
     padding: moderateScale(10),
@@ -105,9 +108,9 @@ export const landscapeStyles = StyleSheet.create({
   imageContainer: {
     // Shallow image to shrink card height in landscape
     aspectRatio: Platform.OS === 'android' ? 3 : 2.2,
-    position: 'relative',
     width: '100%',
-    backgroundColor: COLORS.lightGrayTag,
+    overflow: 'hidden',
+    position: 'relative',
   },
   image: {
     width: '100%',

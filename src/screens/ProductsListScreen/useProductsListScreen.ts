@@ -33,8 +33,8 @@ export const useProductsListScreen = () => {
   }, [navigation]);
 
   const handleNavigateToDeletedItems = useCallback(() => {
-    navigation.navigate('DeletedItems', {items: deletedItems});
-  }, [navigation, deletedItems]);
+    navigation.navigate('DeletedItems');
+  }, [navigation]);
 
   const shouldShowTopActions = useMemo(
     () => cartItems.length > 0 || deletedItems.length > 0,

@@ -5,7 +5,7 @@ import {Product} from '../store/slices/productsSlice';
 export type MainStackParamList = {
   ProductsList: undefined;
   Cart: undefined;
-  DeletedItems: {items: Product[]};
+  DeletedItems: undefined;
 };
 
 export type ProductsListScreenNavigationProp = NativeStackNavigationProp<

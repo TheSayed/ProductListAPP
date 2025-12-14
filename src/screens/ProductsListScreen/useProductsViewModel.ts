@@ -6,11 +6,8 @@ import {
   resetProducts,
   Product,
 } from '../../store/slices/productsSlice';
-import {
-  addToCart,
-  removeFromCart,
-  removeManyFromCart,
-} from '../../store/slices/cartSlice';
+import {addToCart, removeFromCart, removeManyFromCart} from '../../store/slices/cartSlice';
+import {addDeletedItems, clearDeletedItems} from '../../store/slices/deletedItemsSlice';
 import MOCK_DATA from '../../data/MOCK_DATA.json';
 import {SortOrder} from '../../components/SortButton/SortButton';
 
@@ -18,11 +15,13 @@ export const useProductsViewModel = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state: RootState) => state.products.items);
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const deletedItems = useSelector(
+    (state: RootState) => state.deletedItems.items,
+  );
 
   const [searchText, setSearchText] = useState('');
   const [sortOrder, setSortOrder] = useState<SortOrder>('none');
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [deletedItems, setDeletedItems] = useState<Product[]>([]);
   const [debouncedSearchText, setDebouncedSearchText] = useState('');
 
   // Debounce search to avoid filtering on every keystroke; kicks in after 3+ chars
@@ -78,14 +77,9 @@ export const useProductsViewModel = () => {
     const itemsToDelete = allProducts.filter(item =>
       selectedIds.includes(item.id),
     );
-
-    setDeletedItems(prev => {
-      const newItems = itemsToDelete.filter(
-        item => !prev.some(existing => existing.id === item.id),
-      );
-      return newItems.length > 0 ? [...prev, ...newItems] : prev;
-    });
-
+    if (itemsToDelete.length > 0) {
+      dispatch(addDeletedItems(itemsToDelete));
+    }
     dispatch(removeManyFromCart(selectedIds));
     dispatch(deleteProducts(selectedIds));
     setSelectedIds([]);
@@ -93,9 +87,7 @@ export const useProductsViewModel = () => {
 
   const handleDeleteItem = useCallback(
     (product: Product) => {
-      setDeletedItems(prev =>
-        prev.some(item => item.id === product.id) ? prev : [...prev, product],
-      );
+      dispatch(addDeletedItems([product]));
       dispatch(removeFromCart(product.id));
       dispatch(deleteProducts([product.id]));
       setSelectedIds(prev => prev.filter(itemId => itemId !== product.id));
@@ -118,7 +110,7 @@ export const useProductsViewModel = () => {
   const handleResetAll = useCallback(() => {
     dispatch(resetProducts());
     setSelectedIds([]);
-    setDeletedItems([]);
+    dispatch(clearDeletedItems());
   }, [dispatch]);
 
   const hasDeletedItems =

@@ -48,7 +48,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const themedStyles = isPortrait ? portraitStyles : landscapeStyles;
   const heartIcon = isCollected ? 'heart' : 'heart-outline';
   const heartColor = isCollected ? '#FF4757' : '#FF6B6B';
-
   return (
     <Animated.View
       style={[themedStyles.cardContainer, {transform: [{scale: scaleValue}]}]}>
